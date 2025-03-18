@@ -19,6 +19,11 @@ import matplotlib.pyplot as plt
 from normxcorr2 import normxcorr2
 import matplotlib.patches as patches
 
+def getRect(geom: str):
+    res = geom.split('+')
+    res[0] = res[0].split('x')
+    return [int(res[0][0]), int(res[0][1]), int(res[1]), int(res[2])]
+
 # Import some tkinter things for GUI stuff
 import tkinter as tk
 from tkinter import Tk
@@ -419,13 +424,13 @@ class GUI_BOS:
                                                     ("PNG Files", "*.png"),
                                                     ("TIF Files", "*.tif;*.tiff"),
                                                     ("BMP Files", "*.bmp")))
-#        file_path = filedialog.askopenfilename(initialdir = "C:/Users/Josh/Documents/YouTube_Files/DIY_BOS/",
-#                                               title = "Select Image 1",
-#                                               filetypes = (("All Files", "*.jpg;*.png;*.tif;*.tiff;*.bmp"),
-#                                                            ("JPG Files", "*.jpg"),
-#                                                            ("PNG Files", "*.png"),
-#                                                            ("TIF Files", "*.tif;*.tiff"),
-#                                                            ("BMP Files", "*.bmp")))
+    #    file_path = filedialog.askopenfilename(initialdir = "C:/Users/Josh/Documents/YouTube_Files/DIY_BOS/",
+    #                                           title = "Select Image 1",
+    #                                           filetypes = (("All Files", "*.jpg;*.png;*.tif;*.tiff;*.bmp"),
+    #                                                        ("JPG Files", "*.jpg"),
+    #                                                        ("PNG Files", "*.png"),
+    #                                                        ("TIF Files", "*.tif;*.tiff"),
+    #                                                        ("BMP Files", "*.bmp")))
         self.I1 = PIL.Image.open(file_path)                                     # Open the image
         self.textImage1File.delete(0,END)                                       # Delete any strings in text box for file name
         self.textImage1File.insert(0,file_path)                                 # Add file name to the text box
@@ -449,13 +454,13 @@ class GUI_BOS:
                                             ("PNG Files", "*.png"),
                                             ("TIF Files", "*.tif;*.tiff"),
                                             ("BMP Files", "*.bmp")))
-#        file_path = filedialog.askopenfilename(initialdir = "C:/Users/Josh/Documents/YouTube_Files/DIY_BOS/",
-#                                               title = "Select Image 1",
-#                                               filetypes = (("All Files", "*.jpg;*.png;*.tif;*.tiff;*.bmp"),
-#                                                            ("JPG Files", "*.jpg"),
-#                                                            ("PNG Files", "*.png"),
-#                                                            ("TIF Files", "*.tif;*.tiff"),
-#                                                            ("BMP Files", "*.bmp")))
+    #    file_path = filedialog.askopenfilename(initialdir = "C:/Users/Josh/Documents/YouTube_Files/DIY_BOS/",
+    #                                           title = "Select Image 1",
+    #                                           filetypes = (("All Files", "*.jpg;*.png;*.tif;*.tiff;*.bmp"),
+    #                                                        ("JPG Files", "*.jpg"),
+    #                                                        ("PNG Files", "*.png"),
+    #                                                        ("TIF Files", "*.tif;*.tiff"),
+    #                                                        ("BMP Files", "*.bmp")))
         self.I2 = PIL.Image.open(file_path)                                     # Open the image
         self.textImage2File.delete(0,END)                                       # Delete any strings in text box for file name
         self.textImage2File.insert(0,file_path)                                 # Add file name to the text box
@@ -571,7 +576,7 @@ class GUI_BOS:
         
         fm            = plt.get_current_fig_manager()                           # Get the current figure manager
         geom          = fm.window.geometry()                                    # Get the geometry of the window
-        x,y,winW,winH = geom.getRect()                                          # Extract the geometry of the window
+        x,y,winW,winH = getRect(geom)                                          # Extract the geometry of the window
         fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)              # Set the window geometry to new values
         
     # ===========================
@@ -760,7 +765,7 @@ class GUI_BOS:
             
             fm            = plt.get_current_fig_manager()                       # Get the current figure manager
             geom          = fm.window.geometry()                                # Get the geometry of the window
-            x,y,winW,winH = geom.getRect()                                      # Extract the geometry of the window
+            x,y,winW,winH = getRect(geom)                                      # Extract the geometry of the window
             fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)          # Set the window geometry to new values
             
         # Plot the original image contour if user wants to
@@ -803,7 +808,7 @@ class GUI_BOS:
             
             fm            = plt.get_current_fig_manager()                       # Get the current figure manager
             geom          = fm.window.geometry()                                # Get the geometry of the window
-            x,y,winW,winH = geom.getRect()                                      # Extract the geometry of the window
+            x,y,winW,winH = getRect(geom)                                      # Extract the geometry of the window
             fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)          # Set the window geometry to new values
             
             # Set the color axis limits in the Entry boxes
@@ -829,7 +834,7 @@ class GUI_BOS:
 
             fm            = plt.get_current_fig_manager()                       # Get the current figure manager
             geom          = fm.window.geometry()                                # Get the geometry of the window
-            x,y,winW,winH = geom.getRect()                                      # Extract the geometry of the window
+            x,y,winW,winH = getRect(geom)                                      # Extract the geometry of the window
             fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)          # Set the window geometry to new values
             
             # Set the color axis limits in the Entry boxes
@@ -855,7 +860,7 @@ class GUI_BOS:
             
             fm            = plt.get_current_fig_manager()                       # Get the current figure manager
             geom          = fm.window.geometry()                                # Get the geometry of the window
-            x,y,winW,winH = geom.getRect()                                      # Extract the geometry of the window
+            x,y,winW,winH = getRect(geom)                                      # Extract the geometry of the window
             fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)          # Set the window geometry to new values
             
             # Set the color axis limits in the Entry boxes
@@ -881,7 +886,7 @@ class GUI_BOS:
             
             fm            = plt.get_current_fig_manager()                       # Get the current figure manager
             geom          = fm.window.geometry()                                # Get the geometry of the window
-            x,y,winW,winH = geom.getRect()                                      # Extract the geometry of the window
+            x,y,winW,winH = getRect(geom)                                      # Extract the geometry of the window
             fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)          # Set the window geometry to new values
             
             # Set the color axis limits in the Entry boxes
@@ -951,7 +956,7 @@ class GUI_BOS:
         
         fm            = plt.get_current_fig_manager()                           # Get the current figure manager
         geom          = fm.window.geometry()                                    # Get the geometry of the window
-        x,y,winW,winH = geom.getRect()                                          # Extract the geometry of the window
+        x,y,winW,winH = getRect(geom)                                          # Extract the geometry of the window
         fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)              # Set the window geometry to new values
         
     # ============================================
@@ -984,7 +989,7 @@ class GUI_BOS:
         
         fm            = plt.get_current_fig_manager()                           # Get the current figure manager
         geom          = fm.window.geometry()                                    # Get the geometry of the window
-        x,y,winW,winH = geom.getRect()                                          # Extract the geometry of the window
+        x,y,winW,winH = getRect(geom)                                          # Extract the geometry of the window
         fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)              # Set the window geometry to new values
             
     # ============================================
@@ -1017,7 +1022,7 @@ class GUI_BOS:
         
         fm            = plt.get_current_fig_manager()                           # Get the current figure manager
         geom          = fm.window.geometry()                                    # Get the geometry of the window
-        x,y,winW,winH = geom.getRect()                                          # Extract the geometry of the window
+        x,y,winW,winH = getRect(geom)                                          # Extract the geometry of the window
         fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)              # Set the window geometry to new values
         
     # ==============================================
@@ -1055,7 +1060,7 @@ class GUI_BOS:
         
         fm            = plt.get_current_fig_manager()                           # Get the current figure manager
         geom          = fm.window.geometry()                                    # Get the geometry of the window
-        x,y,winW,winH = geom.getRect()                                          # Extract the geometry of the window
+        x,y,winW,winH = getRect(geom)                                          # Extract the geometry of the window
         fm.window.setGeometry(x+self.winXS,y+self.winYS,winW,winH)              # Set the window geometry to new values
         
 root = Tk()
